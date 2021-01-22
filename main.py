@@ -181,11 +181,8 @@ while run:
 
                     # If bullet hit the enemy
                     enem.hit(player.player_damage)
-                    if bullets.__contains__(bul) and bul.vel != 40:
-                        bullets.pop(bullets.index(bul))
-
-                    elif bullets.__contains__(bul) and bul.x >= 900:
-                        bullets.pop(bullets.index(bul))
+                    if bul in bullets and (bul.vel != 40 or bul.x >= 900):
+                        bullets.remove(bul)
 
                     if not enem.not_killed:
                         score += 1
@@ -198,8 +195,8 @@ while run:
         if wind_width > bul.x > 0:
             bul.x += bul.vel
 
-        elif bullets.__contains__(bul):
-            bullets.pop(bullets.index(bul))
+        elif bul in bullets:
+            bullets.remove(bul)
             break
 
     # Enemy attack
@@ -217,7 +214,7 @@ while run:
         if lvl == 5 and enem.__class__ == Clorfos and enem.not_killed:
             for bul in enem.bullets:
                 if bul.x <= 150:
-                    if enem.bullets.__contains__(bul):
+                    if bul in enem.bullets:
                         enem.bullets.remove(bul)
                         wall.hp -= enem.damage
                 else:
@@ -290,8 +287,8 @@ while run:
 
     # Player 1 attack activation
     elif shoot_loop == 0 and player.attacking_count == 13 and player.attack1:
-        bullet = Projectile.Projectile(round(player.x + player.width // 2 + 45),
-                                       round(player.y + player.height // 2 - 20),
+        bullet = Projectile.Projectile(player.x + player.width / 2 + 45,
+                                       player.y + player.height / 2 - 20,
                                        4, (3, 53, 252), bullet_vel, player.player_damage, 12)
         bullets.append(bullet)
         shoot_loop = 1
@@ -299,8 +296,8 @@ while run:
 
     # Player 2 attack activation
     elif shoot_loop == 0 and player.attacking_count == 13 and player.attack2 and attack1_count >= 20:
-        bullet = Projectile.Projectile(round(player.x + player.width // 2 + 45),
-                                       round(player.y + player.height // 2 - 20),
+        bullet = Projectile.Projectile(player.x + player.width / 2 + 45,
+                                       player.y + player.height / 2 - 20,
                                        10, (3, 53, 252), 40, player.player_damage * 3, 12)
         bullet.spell_image = attack_2_image
         bullet.magic_count_speed = 8

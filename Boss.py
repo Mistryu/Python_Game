@@ -24,4 +24,3 @@ class Boss(Enemy.Enemy):
                                                 (self.health * 2), 10))
         else:
             self.dead = True
-

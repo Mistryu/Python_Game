@@ -46,7 +46,7 @@ class Golem(Enemy.Enemy):
                 self.attack_animation_counter += 1
 
             self.hitbox = (self.x - 4, self.y - 15, self.width, self.height + 10)
-           # pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
+            # pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
 
         elif self.dead_counter <= 8:
             win.blit(self.golem_dead_image[self.dead_counter // 3], (self.x - 35, self.y - 60))
