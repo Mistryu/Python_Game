@@ -102,6 +102,19 @@ while run:
 
     # New game difficulty
     if menu.new_game:
+        score = 0
+        wall.hp = 650
+        slime_count = 10
+        owl_count = 0
+        clorfos_count = 0
+        demios_count = 0
+        golem_count = 0
+        boss_count = 0
+        enemy_count = 10
+        lvl = 1
+        enemies.clear()
+        bullets.clear()
+        
         if menu.lvl_difficulty == 1:
             menu.new_game = False
             difficulty_increase = 1
